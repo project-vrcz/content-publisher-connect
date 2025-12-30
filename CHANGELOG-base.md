@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Refresh Session when Restore Session. [`#66`](https://github.com/project-vrcz/content-publisher-connect/pull/66)
+
 ## [0.3.0] - 2025-12-27
 
 ### Changed
