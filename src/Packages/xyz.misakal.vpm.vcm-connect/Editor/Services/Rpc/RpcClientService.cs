@@ -77,6 +77,32 @@ internal sealed class RpcClientService {
         return false;
     }
 
+    public async Task RefreshTokenAsync() {
+        var request = new HttpRequestMessage(HttpMethod.Post, "/v1/auth/refresh") {
+            Content = JsonContent.Create(new RefreshTokenRequest(_clientIdProvider.GetClientName()))
+        };
+
+        var response = await SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        var responseBody = await response.Content.ReadFromJsonAsync<ChallengeResponse>();
+        if (responseBody is null)
+            throw new InvalidResponseException();
+        
+        _token = responseBody.Token;
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
+
+        try {
+            await GetAuthMetadataAsyncCore();
+            await _sessionProvider.SetSessionAsync(new RpcClientSession(_baseUrl!.ToString(), _token));
+        }
+        catch (Exception ex) {
+            _logger.LogError(ex, "Failed to validate token, disconnecting.");
+
+            await ForgetAndDisconnectAsync();
+        }
+    }
+
     public async ValueTask<RpcClientSession?> GetLastSessionInfoAsync() {
         return await _sessionProvider.GetSessionsAsync();
     }
@@ -107,6 +133,7 @@ internal sealed class RpcClientService {
         InstanceName = metadata.InstanceName;
 
         ChangeState(RpcClientState.Connected);
+        await RefreshTokenAsync();
     }
 
     private async Task RestoreSessionAsyncCore(
