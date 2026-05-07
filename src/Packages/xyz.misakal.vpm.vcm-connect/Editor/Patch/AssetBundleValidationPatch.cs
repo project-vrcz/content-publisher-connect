@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using HarmonyLib;
+using Microsoft.Extensions.DependencyInjection;
 using VRC;
 using VRC.SDKBase.Editor.Validation;
+using VRChatContentPublisherConnect.Editor.Services;
 using YesPatchFrameworkForVRChatSdk.PatchApi;
 using YesPatchFrameworkForVRChatSdk.PatchApi.Extensions;
 using YesPatchFrameworkForVRChatSdk.PatchApi.Logging;
@@ -47,6 +49,13 @@ namespace VRChatContentPublisherConnect.Editor.Patch {
             string vrcFilePath,
             ref int fileSize,
             bool mobilePlatform) {
+            if (ConnectEditorApp.Instance is not { } app)
+                return true;
+
+            var settings = app.ServiceProvider.GetRequiredService<AppSettingsService>();
+            if (!settings.GetSettings().UseContentManager)
+                return true;
+
             fileSize = 0;
             __result = true;
 
