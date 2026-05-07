@@ -8,6 +8,7 @@
         <engine:VisualElement>
             <engine:Label class="connected-header" text="Connected to" />
             <engine:Label name="instance-name" text="Instance Name" />
+            <engine:Label text="Just continue your work and publish content using SDK Build and upload or other tools (e.g CAU) you like." />
         </engine:VisualElement>
 
         <engine:VisualElement>
