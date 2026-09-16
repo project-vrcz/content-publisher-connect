@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Auto open settings window and show onboarding tip on first install. [#88](https://github.com/project-vrcz/content-publisher-connect/issues/88)
+
 ## [0.5.3] - 2026-08-03
 
 ### Fixed
