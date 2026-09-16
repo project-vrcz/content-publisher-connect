@@ -7,6 +7,10 @@ namespace VRChatContentPublisherConnect.Editor.Services;
 internal sealed class AppSettingsService {
     private AppSettings? _settings;
 
+    public bool SettingsFileExists() {
+        return File.Exists(GetSettingsPath());
+    }
+
     public AppSettings GetSettings() {
         if (_settings is not null)
             return _settings;
