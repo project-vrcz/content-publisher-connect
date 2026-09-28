@@ -24,7 +24,7 @@ internal sealed class EditorAppLifetimeService {
     }
 
     public async Task StartAsync() {
-        var isFirstInstall = !_appSettingsService.SettingsFileExists();
+        var isFirstInstall = !_appSettingsService.IsOnboardingCompleted();
         _menuItemService.Init();
 
         if (isFirstInstall) {
@@ -36,6 +36,8 @@ internal sealed class EditorAppLifetimeService {
                     "The settings window has been opened automatically.\n" +
                     "Please connect to the VRChat Manager App to get started.",
                     "OK");
+
+                _appSettingsService.SetOnboardingCompleted();
             });
         }
 
