@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-09-29
+
 ### Added
 
 - Check whether the VRChat account signed in in the SDK still has a valid session in the app before starting build and upload, instead of letting the publish task fail later. [#96](https://github.com/project-vrcz/content-publisher-connect/pull/96)
@@ -159,7 +161,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix unable to build and upload when use Content Mangaer publish flow is disbaled. [`#8`](https://github.com/project-vrcz/content-publisher-connect/pull/8)
 
-[unreleased]: https://github.com/project-vrcz/content-publisher-connect/compare/base-v0.5.3...HEAD
+[unreleased]: https://github.com/project-vrcz/content-publisher-connect/compare/base-v0.5.4...HEAD
+[0.5.4]: https://github.com/project-vrcz/content-publisher-connect/compare/base-v0.5.3...base-v0.5.4
 [0.5.3]: https://github.com/project-vrcz/content-publisher-connect/compare/base-v0.5.2...base-v0.5.3
 [0.5.2]: https://github.com/project-vrcz/content-publisher-connect/compare/base-v0.5.1...base-v0.5.2
 [0.5.1]: https://github.com/project-vrcz/content-publisher-connect/compare/base-v0.5.0...base-v0.5.1
